@@ -3,6 +3,9 @@
 # A simple text-based app to organize different crowdfunded projects
 
 class Project
+  attr_reader :total, :goal
+  attr_accessor :name
+
   def initialize(name, total=0, goal=1000)
     @name = name
     @total = total
@@ -10,7 +13,7 @@ class Project
   end
 
   def to_s
-    "Project #{@name} has $#{@total} in funding towards a goal of $#{@goal}."
+    "Project #{@name} needs $#{funding_needed} in funding towards a goal of $#{@goal}."
   end
 
   def lose_funds(total_lost)
@@ -21,6 +24,10 @@ class Project
   def gain_funds(total_gained)
     @total += total_gained
     "Proj #{@name} got more funds!"
+  end
+
+  def funding_needed
+    @goal - @total
   end
 end
 
