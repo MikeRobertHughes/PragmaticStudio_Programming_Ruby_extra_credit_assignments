@@ -31,25 +31,39 @@ class Project
   end
 end
 
+class Fundraiser
+
+  attr_reader :title
+
+  def initialize(title)
+    @title = title
+    @projects = []
+  end
+
+  def add_project(project)
+    @projects << project
+  end
+
+  def report
+    puts "There are #{@projects.size} in the group \"#{title}\" that need to be crowdfunded."
+    puts @projects
+
+    @projects.each do |project|
+      puts project
+      puts "Project #{project.name} has a goal of $#{project.goal}."
+      puts project.lose_funds(10)
+      puts project.gain_funds(30)
+      puts "Project #{project.name} still needs $#{project.funding_needed}."
+    end
+  end
+end
+
 proj1 = Project.new("ABC", 400, 5000)
 proj2 = Project.new("DEF", 20, 100)
 proj3 = Project.new("GHI", 500, 2000)
 
-puts proj1
-puts proj1.lose_funds(200)
-puts proj1
-puts proj1.gain_funds(700)
-puts proj1
-
-projects = [proj1, proj2, proj3]
-puts projects
-
-puts "There are #{projects.size} projects that need to be crowdfunded."
-
-projects.each do |project|
-  puts project
-  puts "Project #{project.name} has a goal of $#{project.goal}."
-  puts project.lose_funds(10)
-  puts project.gain_funds(30)
-  puts "Project #{project.name} still needs $#{project.funding_needed}."
-end
+nonprofits = Fundraiser.new("Nonprofit Projects")
+nonprofits.add_project(proj1)
+nonprofits.add_project(proj2)
+nonprofits.add_project(proj3)
+nonprofits.report
