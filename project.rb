@@ -12,14 +12,14 @@ class Project
     "Project #{@name} needs $#{funding_needed} in funding towards a goal of $#{@goal}."
   end
 
-  def lose_funds(total_lost)
-    @total -= total_lost
-    "Proj #{@name} lost $#{total_lost} in funds!"
+  def lose_funds
+    @total -= 15
+    "Proj #{@name} lost funds!"
   end
 
-  def gain_funds(total_gained)
-    @total += total_gained
-    "Proj #{@name} gained $#{total_gained} in funds!"
+  def gain_funds
+    @total += 25
+    "Proj #{@name} gained funds!"
   end
 
   def funding_needed
