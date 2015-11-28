@@ -26,3 +26,12 @@ class Project
     @goal - @total
   end
 end
+
+if __FILE__ == $0
+  proj = Project.new("ABC", 400, 5000)
+  puts proj
+  puts proj.lose_funds(200)
+  puts proj
+  puts proj.gain_funds(1500)
+  puts proj
+end
