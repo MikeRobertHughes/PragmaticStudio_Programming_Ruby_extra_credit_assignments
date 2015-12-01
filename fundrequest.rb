@@ -1,5 +1,6 @@
 require_relative 'project'
 require_relative 'die'
+require_relative 'funding_round'
 
 class FundRequest
 
@@ -19,17 +20,7 @@ class FundRequest
     puts @projects
 
     @projects.each do |project|
-      die = Die.new
-      number_rolled = die.roll
-
-      case number_rolled
-      when 1..2
-        project.lose_funds
-      when 3..4
-        "Project #{project.name} was skipped"
-      else
-        project.gain_funds
-      end
+      FundingRound.fund_projects(project)
       puts project
     end
   end
