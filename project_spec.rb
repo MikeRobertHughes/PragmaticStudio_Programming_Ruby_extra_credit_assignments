@@ -4,6 +4,7 @@ require_relative 'project'
 describe 'Project' do
 
   before do
+    $stdout = StringIO.new
     @initial_funds = 500
     @project = Project.new("ABC", 500, 1000)
   end
