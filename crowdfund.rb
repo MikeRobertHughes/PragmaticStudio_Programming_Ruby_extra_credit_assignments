@@ -7,4 +7,6 @@ nonprofits = FundRequest.new("Nonprofit Projects")
 nonprofits.add_project(proj1)
 nonprofits.add_project(proj2)
 nonprofits.add_project(proj3)
-nonprofits.report
+nonprofits.report(3)
+
+nonprofits.print_stats

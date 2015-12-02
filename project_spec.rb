@@ -38,4 +38,18 @@ describe 'Project' do
       @project.total == 0
     end
   end
+
+  context 'in a collection of projects' do
+    before do
+      @project1 = Project.new("ABC", 900)
+      @project2 = Project.new("DEF", 700)
+      @project3 = Project.new("GHI", 500)
+
+      @projects = [@project1, @project2, @project3]
+    end
+
+    it 'is sorted by decreasing funding needed' do
+      @projects.sort.should == [@project3, @project2, @project1]
+    end
+  end
 end

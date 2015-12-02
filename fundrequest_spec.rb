@@ -14,15 +14,15 @@ describe FundRequest do
   it 'gains funding if a high number is rolled' do
     Die.any_instance.stub(:roll).and_return(5)
 
-    @fundrequest.report
+    @fundrequest.report(2)
 
-    @project.total.should == @initial_funds + 25
+    @project.total.should == @initial_funds + (25 * 2)
   end
 
   it 'is skipped if a medium number is rolled' do
     Die.any_instance.stub(:roll).and_return(3)
 
-    @fundrequest.report
+    @fundrequest.report(2)
 
     @project.total.should == @initial_funds
   end
@@ -30,8 +30,8 @@ describe FundRequest do
   it 'loses funding if a low number is rolled' do
     Die.any_instance.stub(:roll).and_return(1)
 
-    @fundrequest.report
+    @fundrequest.report(2)
 
-    @project.total.should == @initial_funds - 15
+    @project.total.should == @initial_funds - (15 * 2)
   end
 end

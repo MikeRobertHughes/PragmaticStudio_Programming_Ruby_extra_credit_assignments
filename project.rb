@@ -12,6 +12,10 @@ class Project
     "Project #{@name} needs $#{funding_needed} in funding towards a goal of $#{@goal}."
   end
 
+  def <=>(other_project)
+    other_project.funding_needed <=> funding_needed
+  end
+
   def lose_funds
     @total -= 15
     "Proj #{@name} lost funds!"

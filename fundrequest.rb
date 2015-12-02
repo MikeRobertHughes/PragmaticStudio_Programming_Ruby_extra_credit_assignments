@@ -15,13 +15,24 @@ class FundRequest
     @projects << project
   end
 
-  def report
+  def report(rounds)
     puts "There are #{@projects.size} in the group \"#{title}\" that need to be crowdfunded."
     puts @projects
 
-    @projects.each do |project|
-      FundingRound.fund_projects(project)
-      puts project
+    1.upto(rounds) do |round|
+      puts "\nRound #{round}"
+      @projects.each do |project|
+        FundingRound.fund_projects(project)
+        puts project
+      end
+    end
+
+    def print_stats
+      puts "\n#{@title}'s Statistics:"
+
+      @projects.sort.each do |project|
+        puts "Project #{project.name} still needs #{project.funding_needed}"
+      end
     end
   end
 end
