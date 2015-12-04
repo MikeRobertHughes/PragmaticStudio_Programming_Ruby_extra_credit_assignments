@@ -1,5 +1,6 @@
 require_relative 'project'
 require_relative 'die'
+require_relative 'pledge_type'
 
 module FundingRound
 
@@ -9,11 +10,13 @@ module FundingRound
 
     case number_rolled
     when 1..2
-      project.lose_funds
+      puts project.lose_funds
     when 3..4
       "Project #{project.name} was skipped"
     else
-      project.gain_funds
+      puts project.gain_funds
     end
+    pledge = PledgeType.random
+    puts "Project #{project.name} received a #{pledge.color} pledge worth $#{pledge.amount}."
   end
 end
