@@ -10,12 +10,22 @@ describe 'Project' do
     @project = Project.new("ABC", 500, 1000)
   end
 
+  it 'has a string representation' do
+    @project.pledge_received(Pledge.new(:bronze, 50))
+    @project.pledge_received(Pledge.new(:bronze, 50))
+
+    @project.to_s.should == "Project ABC needs $400 in funding, has a goal of $1000 and has received $100 in pledges."
+  end
+
   it 'has an initial target funding amount' do
     @project.goal.should == 1000
   end
 
-  it 'computes the total funding outstanding as the target funding minus the funding amount' do
-    @project.funding_needed.should == (1000 - 500)
+  it 'computes the total funding outstanding as the target funding minus the initial funding amount plus total pledges' do
+    @project.pledge_received(Pledge.new(:bronze, 50))
+    @project.pledge_received(Pledge.new(:bronze, 50))
+
+    @project.funding_needed.should == (1000 - 600)
   end
 
   it 'increases funds by 25 when funds are added' do

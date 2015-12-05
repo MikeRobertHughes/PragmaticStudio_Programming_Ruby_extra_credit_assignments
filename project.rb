@@ -10,13 +10,13 @@ class Project
   end
 
   def pledge_received(pledge)
-    @pledges_received[pledge.color] = pledge.amount
+    @pledges_received[pledge.color] += pledge.amount
     puts "Project #{@name} received a #{pledge.color} pledge worth $#{pledge.amount}."
     puts "#{@name}'s pledges: #{@pledges_received}"
   end
 
   def to_s
-    "Project #{@name} needs $#{funding_needed} in funding towards a goal of $#{@goal}."
+    "Project #{@name} needs $#{funding_needed} in funding, has a goal of $#{@goal} and has received $#{funding} in pledges."
   end
 
   def <=>(other_project)
@@ -34,7 +34,7 @@ class Project
   end
 
   def funding_needed
-    @goal - @total
+    @goal - (@total + funding)
   end
 
   def funding
