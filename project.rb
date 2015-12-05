@@ -33,8 +33,12 @@ class Project
     "Proj #{@name} gained funds!"
   end
 
+  def total_funding
+    @total + funding
+  end
+
   def funding_needed
-    @goal - (@total + funding)
+    @goal - total_funding
   end
 
   def funding
