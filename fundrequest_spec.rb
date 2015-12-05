@@ -34,4 +34,15 @@ describe FundRequest do
 
     @project.total.should == @initial_funds - (15 * 2)
   end
+
+  it 'assigns a pledge for dollar amounts during funding round' do
+    fundrequest = FundRequest.new("Nonprofits")
+    project = Project.new("ABC")
+
+    fundrequest.add_project(project)
+
+    fundrequest.report(1)
+
+    project.funding.should_not be_zero
+  end
 end

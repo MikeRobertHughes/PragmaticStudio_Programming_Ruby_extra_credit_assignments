@@ -7,6 +7,7 @@ module FundingRound
   def self.fund_projects(project)
     die = Die.new
     number_rolled = die.roll
+    pledge = PledgeType.random
 
     case number_rolled
     when 1..2
@@ -16,5 +17,7 @@ module FundingRound
     else
       puts project.gain_funds
     end
+
+    project.pledge_received(pledge)
   end
 end
