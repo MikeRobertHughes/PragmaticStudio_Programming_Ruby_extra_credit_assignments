@@ -13,7 +13,7 @@ module FundingRound
     when 1..2
       puts project.lose_funds
     when 3..4
-      "Project #{project.name} was skipped"
+      puts "Project #{project.name} was skipped"
     else
       puts project.gain_funds
     end

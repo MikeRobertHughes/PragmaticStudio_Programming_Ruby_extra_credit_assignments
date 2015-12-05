@@ -27,17 +27,24 @@ class FundRequest
       end
     end
 
+    puts "\nTotal money invested from #{title} fund request:"
+    puts "$#{total_investments} invested"
+
     @projects.each do |project|
       puts "\nProject #{project.name} totals:"
       puts "$#{project.total_funding} in total funding"
     end
   end
 
+  def total_investments
+    @projects.reduce(0) { |sum, project| sum + project.total_funding }
+  end
+
   def print_stats
     puts "\n#{@title}'s Statistics:"
 
     @projects.sort.each do |project|
-      puts "Project #{project.name} still needs #{project.funding_needed}"
+      puts "Project #{project.name} still needs $#{project.funding_needed}"
     end
   end
 end
