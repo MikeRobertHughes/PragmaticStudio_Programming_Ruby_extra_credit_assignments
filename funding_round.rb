@@ -16,7 +16,5 @@ module FundingRound
     else
       puts project.gain_funds
     end
-    pledge = PledgeType.random
-    puts "Project #{project.name} received a #{pledge.color} pledge worth $#{pledge.amount}."
   end
 end

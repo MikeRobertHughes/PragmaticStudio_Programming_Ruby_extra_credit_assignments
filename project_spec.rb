@@ -1,5 +1,6 @@
 require_relative 'spec_helper'
 require_relative 'project'
+require_relative 'pledge_type'
 
 describe 'Project' do
 
@@ -27,6 +28,22 @@ describe 'Project' do
     @project.lose_funds
 
     @project.total.should == (@initial_funds - 15)
+  end
+
+  it 'computes funding as sum of all pledge dollar amounts' do
+    @project.funding.should == 0
+
+    @project.pledge_received(Pledge.new(:bronze, 50))
+
+    @project.funding.should == 50
+
+    @project.pledge_received(Pledge.new(:silver, 75))
+
+    @project.funding.should == 125
+
+    @project.pledge_received(Pledge.new(:gold, 100))
+
+    @project.funding.should == 225
   end
 
   context 'has a default value of 0 for funding amount' do

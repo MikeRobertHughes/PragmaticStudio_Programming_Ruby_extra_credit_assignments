@@ -6,6 +6,13 @@ class Project
     @name = name
     @total = total
     @goal = goal
+    @pledges_received = Hash.new(0)
+  end
+
+  def pledge_received(pledge)
+    @pledges_received[pledge.color] = pledge.amount
+    puts "Project #{@name} received a #{pledge.color} pledge worth $#{pledge.amount}."
+    puts "#{@name}'s pledges: #{@pledges_received}"
   end
 
   def to_s
@@ -28,6 +35,10 @@ class Project
 
   def funding_needed
     @goal - @total
+  end
+
+  def funding
+    @pledges_received.values.reduce(0, :+)
   end
 end
 
