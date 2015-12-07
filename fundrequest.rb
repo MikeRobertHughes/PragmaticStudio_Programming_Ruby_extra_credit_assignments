@@ -32,6 +32,9 @@ class FundRequest
 
     @projects.each do |project|
       puts "\nProject #{project.name} totals:"
+      project.each_pledge_received do |pledge|
+        puts "#{pledge.color} pledges total $#{pledge.amount} "
+      end
       puts "$#{project.total_funding} in total funding"
     end
   end

@@ -56,6 +56,27 @@ describe 'Project' do
     @project.funding.should == 225
   end
 
+  it 'yields pledge and its total points' do
+    @project.pledge_received(Pledge.new(:bronze, 50))
+    @project.pledge_received(Pledge.new(:bronze, 50))
+    @project.pledge_received(Pledge.new(:silver, 75))
+    @project.pledge_received(Pledge.new(:gold, 100))
+    @project.pledge_received(Pledge.new(:gold, 100))
+    @project.pledge_received(Pledge.new(:gold, 100))
+
+    yielded = []
+
+    @project.each_pledge_received do |pledge|
+      yielded << pledge
+    end
+
+    yielded.should == [
+      Pledge.new(:bronze, 100),
+      Pledge.new(:silver, 75),
+      Pledge.new(:gold, 300),
+    ]
+  end
+
   context 'has a default value of 0 for funding amount' do
     before do
       @project = Project.new("ABC")

@@ -1,3 +1,5 @@
+require_relative 'pledge_type'
+
 class Project
   attr_reader :total, :goal
   attr_accessor :name
@@ -7,6 +9,12 @@ class Project
     @total = total
     @goal = goal
     @pledges_received = Hash.new(0)
+  end
+
+  def each_pledge_received
+    @pledges_received.each do |color, amount|
+      yield Pledge.new(color, amount)
+    end
   end
 
   def pledge_received(pledge)
