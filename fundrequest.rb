@@ -11,6 +11,13 @@ class FundRequest
     @projects = []
   end
 
+  def load_projects(from_file)
+    File.readlines(from_file).each do |line|
+      name, total = line.split(",")
+      add_project(Project.new(name, Integer(total)))
+    end
+  end
+
   def add_project(project)
     @projects << project
   end

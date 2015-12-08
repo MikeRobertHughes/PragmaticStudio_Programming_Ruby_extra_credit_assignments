@@ -4,9 +4,7 @@ proj2 = Project.new("DEF", 200)
 proj3 = Project.new("GHI", 500)
 
 nonprofits = FundRequest.new("Nonprofit Projects")
-nonprofits.add_project(proj1)
-nonprofits.add_project(proj2)
-nonprofits.add_project(proj3)
+nonprofits.load_projects(ARGV.shift || "projects.csv")
 
 loop do
   puts "\nHow many rounds of funding would you like? ('quit' to exit)"
