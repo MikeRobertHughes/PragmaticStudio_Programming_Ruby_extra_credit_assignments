@@ -77,6 +77,14 @@ describe 'Project' do
     ]
   end
 
+  it 'parses a CSV file' do
+    line = "NGO,400"
+    project = Project.from_csv(line)
+
+    project.name.should == "NGO"
+    project.total.should == 400
+  end
+
   context 'has a default value of 0 for funding amount' do
     before do
       @project = Project.new("ABC")
