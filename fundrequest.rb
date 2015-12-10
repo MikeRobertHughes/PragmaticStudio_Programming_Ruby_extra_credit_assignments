@@ -56,5 +56,11 @@ class FundRequest
     @projects.sort.each do |project|
       puts "Project #{project.name} still needs $#{project.funding_needed}"
     end
+
+    puts "\n#{@title}'s Fundings:"
+    @projects.sort.each do |project|
+      format_name = project.name.ljust(20, '.')
+      puts "Project #{format_name} #{project.total_funding}"
+    end
   end
 end
