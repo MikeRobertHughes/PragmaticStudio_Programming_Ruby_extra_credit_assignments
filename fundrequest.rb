@@ -27,8 +27,7 @@ class FundRequest
 
   def load_projects(from_file)
     File.readlines(from_file).each do |line|
-      name, total = line.split(",")
-      add_project(Project.new(name, Integer(total)))
+      add_project(Project.from_csv(line))
     end
   end
 

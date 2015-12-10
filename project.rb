@@ -11,6 +11,11 @@ class Project
     @pledges_received = Hash.new(0)
   end
 
+  def self.from_csv(line)
+    name, total = line.split(",")
+    Project.new(name, Integer(total))
+  end
+
   def each_pledge_received
     @pledges_received.each do |color, amount|
       yield Pledge.new(color, amount)
