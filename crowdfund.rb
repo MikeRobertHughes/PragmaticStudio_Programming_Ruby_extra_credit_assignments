@@ -19,3 +19,5 @@ loop do
     puts "Please enter a number or 'quit'"
   end
 end
+
+nonprofits.save_total_fundings

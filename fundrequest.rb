@@ -11,6 +11,20 @@ class FundRequest
     @projects = []
   end
 
+  def total_fundings_entry(project)
+    format_name = project.name.ljust(20, '.')
+    "Project #{format_name} #{project.total_funding}"
+  end
+
+  def save_total_fundings(to_file="total_fundings.txt")
+    File.open(to_file, "w") do |file|
+      file.puts "#{@title}'s Total Fundings:"
+      @projects.sort.each do |project|
+        file.puts total_fundings_entry(project)
+      end
+    end
+  end
+
   def load_projects(from_file)
     File.readlines(from_file).each do |line|
       name, total = line.split(",")
@@ -59,8 +73,7 @@ class FundRequest
 
     puts "\n#{@title}'s Fundings:"
     @projects.sort.each do |project|
-      format_name = project.name.ljust(20, '.')
-      puts "Project #{format_name} #{project.total_funding}"
+      puts total_fundings_entry(project)
     end
   end
 end
